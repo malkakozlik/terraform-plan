@@ -1,0 +1,26 @@
+name: 💄Terraform Linter 
+on: push 
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    defaults:
+      run:
+        working-directory: main-project
+
+    steps:
+    - name: 📂 Checkout 
+      uses: actions/checkout@v4
+
+    - name: 🛠️ Setup TFLint
+      uses: terraform-linters/setup-tflint@v3
+      with:
+        tflint_version: v0.50.0
+
+    - name: 🔵 Init TFLint
+      run: tflint --config ../.tflint.hcl --init 
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+
+    - name: 💄 Run TFLint
+      run: tflint  --config ../.tflint.hcl -f compact
