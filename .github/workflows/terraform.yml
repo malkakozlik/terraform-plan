@@ -39,6 +39,6 @@ jobs:
           for directory in ${DIRECTORIES[@]}; do
             cd ${directory} || exit 1
             terraform init 
-            terraform import  module.administrator.azurerm_key_vault_secret.key_vault_secret "https://kv-connection-string.vault.azure.net/secrets/ADMINISTRATORS-SECRET/7378a31a-29be-4570-9623-0654b5f2bc25"
+            terraform plan
             cd ..  
           done  
