@@ -53,6 +53,12 @@ resource "azurerm_key_vault_secret" "key_vault_secret" {
   name         = var.key_vault_secret_name
   value        = azurerm_storage_account.storage_account.primary_connection_string
   key_vault_id = azurerm_key_vault.key_vault.id
+  lifecycle {
+    ignore_changes = [
+      all
+    ]
+  }
+
 }
 
 resource "azurerm_storage_table" "storage_table" {
