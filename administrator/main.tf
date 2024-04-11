@@ -32,7 +32,7 @@ resource "azurerm_key_vault" "key_vault" {
 
   lifecycle {
     ignore_changes = [
-      access_policy
+      access_policy , tags
     ]
   }
 }
