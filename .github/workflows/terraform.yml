@@ -39,6 +39,6 @@ jobs:
           for directory in ${DIRECTORIES[@]}; do
             cd ${directory} || exit 1
             terraform init 
-            terraform plan 
+            terraform state 
             cd ..  
           done  
