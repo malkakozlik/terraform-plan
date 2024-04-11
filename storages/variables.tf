@@ -20,6 +20,7 @@ variable key_vault_resource_group_name {
 
 variable key_vault_secret_excel_name {
   type = string
+  default = "ADMINISTRATORS-SECRET"
 }
 
 variable rg_name{
