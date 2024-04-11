@@ -29,6 +29,12 @@ resource "azurerm_key_vault" "key_vault" {
     secret_permissions = var.key_vault_secret_permissions
     storage_permissions = var.key_vault_storage_permissions
   }
+
+  lifecycle {
+    ignore_changes = [
+      access_policy
+    ]
+  }
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret" {
