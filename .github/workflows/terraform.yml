@@ -40,6 +40,6 @@ jobs:
             cd ${directory} || exit 1
             terraform init 
             terraform plan
-            terraform apply --auto-aprrove
+            terraform apply -auto-approve
             cd ..  
           done  
