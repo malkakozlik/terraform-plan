@@ -45,28 +45,28 @@ module subscriptions {
     ]
 }
 
-module storages{
-  source = "../storages/"
-  key_vault_name = module.administrator.key_vault_name
-  key_vault_resource_group_name = module.administrator.key_vault_resource_group_name
-  DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
-  DOCKER_REGISTRY_SERVER_USERNAME = var.DOCKER_REGISTRY_SERVER_USERNAME
-  DOCKER_REGISTRY_SERVER_PASSWORD = var.DOCKER_REGISTRY_SERVER_PASSWORD
+# module storages{
+#   source = "../storages/"
+#   key_vault_name = module.administrator.key_vault_name
+#   key_vault_resource_group_name = module.administrator.key_vault_resource_group_name
+#   DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
+#   DOCKER_REGISTRY_SERVER_USERNAME = var.DOCKER_REGISTRY_SERVER_USERNAME
+#   DOCKER_REGISTRY_SERVER_PASSWORD = var.DOCKER_REGISTRY_SERVER_PASSWORD
 
-  depends_on = [
-    module.emails
-  ]
-}
+#   depends_on = [
+#     module.emails
+#   ]
+# }
 
-module user-disable {
-  source = "../user-disable/"
-  key_vault_name = module.administrator.key_vault_name
-  key_vault_resource_group_name = module.administrator.key_vault_resource_group_name
-  DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
-  DOCKER_REGISTRY_SERVER_USERNAME = var.DOCKER_REGISTRY_SERVER_USERNAME
-  DOCKER_REGISTRY_SERVER_PASSWORD = var.DOCKER_REGISTRY_SERVER_PASSWORD
+# module user-disable {
+#   source = "../user-disable/"
+#   key_vault_name = module.administrator.key_vault_name
+#   key_vault_resource_group_name = module.administrator.key_vault_resource_group_name
+#   DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
+#   DOCKER_REGISTRY_SERVER_USERNAME = var.DOCKER_REGISTRY_SERVER_USERNAME
+#   DOCKER_REGISTRY_SERVER_PASSWORD = var.DOCKER_REGISTRY_SERVER_PASSWORD
 
-  depends_on = [
-      module.administrator
-  ]
-}
+#   depends_on = [
+#       module.administrator
+#   ]
+# }
