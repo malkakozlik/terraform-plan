@@ -39,6 +39,7 @@ jobs:
           for directory in ${DIRECTORIES[@]}; do
             cd ${directory} || exit 1
             terraform init 
-            terraform destroy
+            terraform plan
+            terraform apply --auto-aprrove
             cd ..  
           done  
