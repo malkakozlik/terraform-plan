@@ -54,7 +54,7 @@ resource "azurerm_linux_function_app" "linux_function_app" {
   } : count.index==1 ? {
     FUNCTIONS_WORKER_RUNTIME = "python"
     DOCUMENTATION_TABLE = azurerm_storage_table.storage_table[0].name
-    SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    # SECRET = azurerm_key_vault_secret.key_vault_secret.name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
     https_only = true
     DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
@@ -81,7 +81,7 @@ resource "azurerm_linux_function_app" "linux_function_app" {
     DOCUMENTATION_TABLE = azurerm_storage_table.storage_table[0].name
     ALERTS_DOCUMENTATION = azurerm_storage_table.storage_table[2].name
     DOCUMENTATION_STORAGE_NAME= azurerm_storage_account.storage_account.name
-    SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    # SECRET = azurerm_key_vault_secret.key_vault_secret.name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
     https_only = true
     DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
@@ -95,7 +95,7 @@ resource "azurerm_linux_function_app" "linux_function_app" {
     DOCUMENTATION_TABLE = azurerm_storage_table.storage_table[0].name
     DELETED_ACCOUNTS_TABLE = azurerm_storage_table.storage_table[1].name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
-    SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    # SECRET = azurerm_key_vault_secret.key_vault_secret.name
     SECRET_EXCEL = var.key_vault_secret_excel_name
     https_only = true
     DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
