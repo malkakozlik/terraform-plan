@@ -41,7 +41,7 @@ resource "azurerm_linux_function_app" "linux_function_app" {
 
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME = "python"
-    EMAILS_SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    # EMAILS_SECRET = azurerm_key_vault_secret.key_vault_secret.name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
     https_only = true
     GRAPH_URL = " "
