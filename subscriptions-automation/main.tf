@@ -16,11 +16,11 @@ data "azurerm_key_vault" "key_vault" {
   resource_group_name = var.key_vault_resource_group_name
 }
 
-# resource "azurerm_key_vault_secret" "key_vault_secret" {
-#   name         = var.key_vault_secret_name
-#   value        = azurerm_storage_account.storage_account.primary_connection_string
-#   key_vault_id = data.azurerm_key_vault.key_vault.id
-# }
+resource "azurerm_key_vault_secret" "key_vault_secret" {
+  name         = var.key_vault_secret_name
+  value        = azurerm_storage_account.storage_account.primary_connection_string
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+}
 
 resource "azurerm_logic_app_workflow" "logic_app_workflow" {
   name                =  var.logic_app_workflow_name
@@ -59,7 +59,7 @@ resource "azurerm_linux_function_app" "function_app" {
     TABLE_EMAILS = " "
     TABLE_SUBSCRIPTIONS_MANAGERS = " "
     TABLE_SUBSCRIPTIONS_TO_DELETE = " "
-    # SUBSCRIPTION_SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    SUBSCRIPTION_SECRET = azurerm_key_vault_secret.key_vault_secret.name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
     https_only = true
     DOCKER_REGISTRY_SERVER_URL = var.DOCKER_REGISTRY_SERVER_URL
@@ -72,7 +72,7 @@ resource "azurerm_linux_function_app" "function_app" {
     EMAILS_SECRET = " "
     HTTP_TRIGGER_URL = " "
     HTTP_TRIGGER_URL_SUBSCRIPTION_AUTOMATION = " "
-    # SUBSCRIPTION_SECRET = azurerm_key_vault_secret.key_vault_secret.name
+    SUBSCRIPTION_SECRET = azurerm_key_vault_secret.key_vault_secret.name
     KEYVAULT_URI = data.azurerm_key_vault.key_vault.vault_uri
     TABLE_SUBSCRIPTIONS_TO_DELETE = " "
     TAG_NAME = " "
@@ -99,28 +99,6 @@ resource "azurerm_linux_function_app" "function_app" {
   identity {
     type = "SystemAssigned"
   }
-  count = length(var.function_app_name)
-}
-
-resource "azurerm_linux_function_app_slot" "linux_function_app_slot" {
-  name                       = "development"
-  function_app_id            = azurerm_linux_function_app.function_app[count.index].id
-  storage_account_name       = azurerm_storage_account.storage_account.name
-  storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
-
-  site_config {
-    always_on = true
-    application_stack {
-      docker {
-        registry_url = var.DOCKER_REGISTRY_SERVER_URL
-        image_name = var.IMAGE_NAME
-        image_tag = var.IMAGE_TAG
-        registry_username = var.DOCKER_REGISTRY_SERVER_USERNAME
-        registry_password = var.DOCKER_REGISTRY_SERVER_PASSWORD
-      }
-    }
-  }
-
   count = length(var.function_app_name)
 }
 

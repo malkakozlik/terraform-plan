@@ -1,12 +1,6 @@
 resource "azurerm_resource_group" "resource_group" {
   name     = var.rg_name
   location = var.rg_location
-
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
-  }
 }
 
 resource "azurerm_storage_account" "storage_account" {
@@ -15,12 +9,6 @@ resource "azurerm_storage_account" "storage_account" {
   location                 = azurerm_resource_group.resource_group.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
-  }
 }
 
 data "azurerm_client_config" "current_client" {}
@@ -40,12 +28,6 @@ resource "azurerm_key_vault" "key_vault" {
     key_permissions = var.key_vault_key_permissions
     secret_permissions = var.key_vault_secret_permissions
     storage_permissions = var.key_vault_storage_permissions
-  }
-
-  lifecycle {
-    ignore_changes = [
-      tags
-    ]
   }
 }
 
