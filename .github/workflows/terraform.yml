@@ -39,7 +39,6 @@ jobs:
           for directory in ${DIRECTORIES[@]}; do
             cd ${directory} || exit 1
             terraform init 
-            terraform plan
-            terraform apply -auto-approve
+            terraform import module.administrator.azurerm_key_vault_secret.key_vault_secret "https://kv-connection-string.vault.azure.net/secrets/ADMINISTRATORS-SECRET/e5f5d5a755e9435fb3309271afb5f0a6"
             cd ..  
           done  
