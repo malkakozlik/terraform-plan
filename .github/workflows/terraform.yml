@@ -39,6 +39,6 @@ jobs:
           for directory in ${DIRECTORIES[@]}; do
             cd ${directory} || exit 1
             terraform init 
-            terraform import module.emails.azurerm_key_vault_secret.key_vault_secret "https://kv-connection-string.vault.azure.net/secrets/SUBSCRIPTION-SECRET/26aa65b7a35348b1b97e458f991cf2ed"
+            terraform import module.emails.azurerm_key_vault_secret.key_vault_secret "https://kv-connection-string.vault.azure.net/secrets/EMAILS-SECRET/7ea2a0986cff46debb778590ab18226d"
             cd ..  
           done  
