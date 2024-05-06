@@ -147,8 +147,8 @@ resource "azurerm_linux_function_app_slot" "linux_function_app_slot" {
 
 resource "azurerm_logic_app_workflow" "logic_app_workflow" {
   name                = var.logic_app_workflow_name
-  location            = var.rg_location
-  resource_group_name = var.rg_name
+  location            = azurerm_resource_group.resource_group.location
+  resource_group_name = azurerm_resource_group.resource_group.name
 }
 
 data "azurerm_client_config" "current_client" {}
